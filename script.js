@@ -71,4 +71,35 @@ btnAdd.addEventListener("click", function () {
   btnDelete.addEventListener("click", function () {
     list.removeChild(listItem);
   });
+
+  // creating a new text input field
+  const input = document.createElement("input");
+  // adding a functionality to the edit button
+  // When edit clicked the text goes to input field
+  btnEdit.addEventListener("click", function () {
+    input.type = "text";
+    // here as an input value
+    // listItem - li - childNode[1] because the text is a second element of li
+    input.value = listItem.childNodes[1].textContent;
+    listItem.textContent = "";
+    // in the li element display input
+    listItem.appendChild(input);
+
+    // creating a save button inside the li while on editing
+    const btnSave = document.createElement("button");
+    btnSave.setAttribute("id", "btn-save");
+    btnSave.innerHTML = "Save";
+    // display save button
+    listItem.appendChild(btnSave);
+
+    // adding a functionality to save button
+    btnSave.addEventListener("click", function () {
+      const editedText = input.value;
+      listItem.innerHTML = "";
+      listItem.appendChild(inputCheckBox);
+      taskText.textContent = editedText;
+      listItem.appendChild(taskText);
+      listItem.appendChild(buttonContainer);
+    });
+  });
 });
